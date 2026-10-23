@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="vi" class="light scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư Viện Đề Thi KHTN Lớp 9, HSG & Tuyển Sinh Chuyên 2023-2026 | NEXUSLAB</title>
+    <!-- NexusLab Firewall (Rate-Limiter & WAF) -->
+    <script src="firewall.js"></script>
+    <!-- NexusLab Theme Engine (Trắng / Đen) -->
+    <script src="theme-toggle.js"></script>
+    <!-- NexusLab Teacher Toolkit (Giảng dạy, Bút vẽ & Laser) -->
+    <script src="teacher-toolkit.js"></script>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyberDark: '#ffffff',
+                        cyberSurface: '#f8fafc',
+                        neonCyan: '#0284c7',
+                        neonBlue: '#2563eb',
+                        neonPink: '#e11d48',
+                        neonPurple: '#7c3aed',
+                        neonEmerald: '#059669',
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 4px 20px rgba(2, 132, 199, 0.25)',
+                        'neon-pink': '0 4px 20px rgba(225, 29, 72, 0.25)',
+                        'neon-emerald': '0 4px 20px rgba(5, 150, 105, 0.25)',
+                        'neon-purple': '0 4px 20px rgba(124, 58, 237, 0.25)',
+                        'glow-subtle': '0 4px 18px rgba(0, 0, 0, 0.06)'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Be Vietnam Pro', 'Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts with full Vietnamese Character Subsets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- KaTeX for Scientific Formulas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <!-- NexusLab Motion Primitives & Animata Stylesheet -->
+    <link rel="stylesheet" href="styles/animations.css">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', 'Inter', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* ========================================================
+           LIGHT MODE OVERRIDES - High Contrast Bold Ink & Zero Font Bug
+           ======================================================== */
+        html.light body, html:not(.dark) body {
+            background-color: #f8fafc !important;
+            color: #0f172a !important;
+        }
+        html.light .glass-panel, html:not(.dark) .glass-panel {
+            background: rgba(255, 255, 255, 0.96) !important;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+        }
+        html.light .glass-card, html:not(.dark) .glass-card {
+            background: #ffffff !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid #e2e8f0 !important;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05) !important;
+            color: #0f172a !important;
+            transition: all 0.25s ease;
+        }
+        html.light .glass-card:hover, html:not(.dark) .glass-card:hover {
+            box-shadow: 0 12px 30px rgba(2, 132, 199, 0.12) !important;
+            border-color: #0284c7 !important;
+        }
+        html.light .cyber-grid, html:not(.dark) .cyber-grid {
+            background-color: #f8fafc !important;
+            background-size: 32px 32px !important;
+            background-image: 
+                radial-gradient(circle, #cbd5e1 1.2px, transparent 1.2px) !important;
+        }
+        html.light h1, html.light h2, html.light h3, html.light h4, html.light h5, html.light h6,
+        html:not(.dark) h1, html:not(.dark) h2, html:not(.dark) h3, html:not(.dark) h4, html:not(.dark) h5, html:not(.dark) h6 {
+            color: #0f172a !important;
+            font-weight: 800 !important;
+        }
+        html.light .text-white, html:not(.dark) .text-white {
+            color: #0f172a !important;
+        }
+        html.light .text-slate-100, html:not(.dark) .text-slate-100 {
+            color: #0f172a !important;
+        }
+        html.light .text-slate-200, html:not(.dark) .text-slate-200 {
+            color: #1e293b !important;
+        }
+        html.light .text-slate-300, html:not(.dark) .text-slate-300 {
+            color: #334155 !important;
+        }
+        html.light .text-slate-400, html:not(.dark) .text-slate-400 {
+            color: #475569 !important;
+        }
+        html.light .bg-slate-950, html.light .bg-slate-900,
+        html.light .bg-slate-950\/50, html.light .bg-slate-950\/70, html.light .bg-slate-950\/80, html.light .bg-slate-950\/90,
+        html:not(.dark) .bg-slate-950, html:not(.dark) .bg-slate-900,
+        html:not(.dark) .bg-slate-950\/50, html:not(.dark) .bg-slate-950\/70, html:not(.dark) .bg-slate-950\/80, html:not(.dark) .bg-slate-950\/90 {
+            background-color: #f1f5f9 !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        html.light .border-slate-800, html.light .border-slate-700, html.light .border-slate-800\/80,
+        html:not(.dark) .border-slate-800, html:not(.dark) .border-slate-700, html:not(.dark) .border-slate-800\/80 {
+            border-color: #cbd5e1 !important;
+        }
+        html.light .text-cyan-300, html:not(.dark) .text-cyan-300 {
+            color: #0284c7 !important;
+        }
+        html.light .text-emerald-300, html:not(.dark) .text-emerald-300 {
+            color: #059669 !important;
+        }
+        html.light .text-pink-300, html:not(.dark) .text-pink-300 {
+            color: #e11d48 !important;
+        }
+        html.light .text-amber-300, html:not(.dark) .text-amber-300 {
+            color: #b45309 !important;
+        }
+        html.light .bg-cyan-950\/40, html.light .bg-cyan-950\/30,
+        html:not(.dark) .bg-cyan-950\/40, html:not(.dark) .bg-cyan-950\/30 {
+            background-color: #e0f2fe !important;
+            border-color: #7dd3fc !important;
+            color: #0369a1 !important;
+        }
+        html.light select, html.light input,
+        html:not(.dark) select, html:not(.dark) input {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #cbd5e1 !important;
+        }
+        html.light #examDetailModal .relative,
+        html:not(.dark) #examDetailModal .relative {
+            background-color: #ffffff !important;
+            color: #0f172a !important;
+            border-color: #0284c7 !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+        }
+        html.light #examDetailModal .bg-slate-950\/80,
+        html.light #examDetailModal .bg-slate-950\/90,
+        html:not(.dark) #examDetailModal .bg-slate-950\/80,
+        html:not(.dark) #examDetailModal .bg-slate-950\/90 {
+            background-color: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+        }
+        html.light .katex, html:not(.dark) .katex {
+            color: #0c4a6e !important;
+            font-weight: 600 !important;
+        }
+
+        /* ========================================================
+           DARK MODE STYLES
+           ======================================================== */
+        html.dark body {
+            background-color: #050713 !important;
+            color: #f8fafc !important;
+        }
+        html.dark .glass-panel {
+            background: rgba(15, 23, 42, 0.85) !important;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
+        }
+        html.dark .glass-card {
+            background: rgba(30, 41, 59, 0.7) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+        }
+        html.dark .cyber-grid {
+            background-color: #050713 !important;
+            background-size: 40px 40px !important;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px) !important;
+        }
+        html.dark .katex {
+            color: #38bdf8 !important;
+        }
+
+        @media print {
+            header, footer, #filterToolbar, .no-print {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .print-only-container {
+                display: block !important;
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+<body class="cyber-grid relative min-h-screen flex flex-col selection:bg-neonCyan/30 selection:text-white">
+
+    <!-- Top Glow Ambient Lights -->
+    <div class="fixed top-[-140px] left-[-120px] w-[500px] h-[500px] bg-neonCyan/15 rounded-full blur-[150px] pointer-events-none animata-aurora-orb"></div>
+    <div class="fixed top-[45%] right-[-150px] w-[550px] h-[550px] bg-neonPink/10 rounded-full blur-[160px] pointer-events-none animata-aurora-orb-alt"></div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-white/10 px-4 md:px-8 py-3.5 transition-all">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-neonCyan via-neonBlue to-neonPurple p-[2px] shadow-neon-cyan group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-cyberDark rounded-[10px] flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-neonCyan animate-spin" style="animation-duration: 12s;"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z"></path><path d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z"></path></svg>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider text-white flex items-center gap-1 font-mono">
+                        NEXUS<span class="text-neonCyan">LAB</span>
+                    </span>
+                    <span class="block text-[9px] text-slate-400 font-mono tracking-widest uppercase">SCI-EXAM REPOSITORY</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-2">
+                <a href="index.html" class="px-3.5 py-2 text-sm font-semibold text-slate-300 hover:text-neonCyan hover:bg-white/5 rounded-xl transition-all flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-4 h-4"></i> Trang Chủ
+                </a>
+                <a href="thuviede.html" class="px-4 py-2 text-sm font-semibold text-neonCyan bg-neonCyan/15 border border-neonCyan/40 rounded-xl transition-all flex items-center gap-1.5 shadow-sm">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Thư Viện Đề
+                </a>
+                <a href="nxscan.html" class="px-3.5 py-2 text-sm font-semibold text-slate-300 hover:text-emerald-400 hover:bg-white/5 rounded-xl transition-all flex items-center gap-1.5">
+                    <i data-lucide="scan" class="w-4 h-4"></i> Nexus Scanner
+                </a>
+                <a href="ly.html" class="px-3 py-2 text-sm font-semibold text-slate-300 hover:text-neonCyan hover:bg-white/5 rounded-xl transition-all">Vật Lý</a>
+                <a href="hoa.html" class="px-3 py-2 text-sm font-semibold text-slate-300 hover:text-neonEmerald hover:bg-white/5 rounded-xl transition-all">Hóa Học</a>
+                <a href="sinh.html" class="px-3 py-2 text-sm font-semibold text-slate-300 hover:text-neonPink hover:bg-white/5 rounded-xl transition-all">Sinh Học</a>
+            </nav>
+
+            <!-- User Auth Slot & Theme Toggle (No extra lab button) -->
+            <div class="flex items-center gap-3">
+                <div class="nexus-theme-nav-slot"></div>
+                <div id="authHeaderSlot"></div>
+                <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-slate-300 hover:text-white glass-card rounded-lg">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileDrawer" class="hidden lg:hidden mt-4 pt-3 border-t border-white/10 space-y-2 font-mono text-sm">
+            <a href="index.html" class="block px-4 py-2 text-slate-300 hover:bg-white/5 rounded-xl">Trang Chủ</a>
+            <a href="thuviede.html" class="block px-4 py-2 text-neonCyan bg-neonCyan/10 rounded-xl font-bold">Thư Viện Đề Thi</a>
+            <a href="nxscan.html" class="block px-4 py-2 text-emerald-300 hover:bg-white/5 rounded-xl">Nexus Scanner (Android APK)</a>
+            <a href="ly.html" class="block px-4 py-2 text-cyan-300 hover:bg-white/5 rounded-xl">Phòng Thí Nghiệm Vật Lý</a>
+            <a href="hoa.html" class="block px-4 py-2 text-emerald-300 hover:bg-white/5 rounded-xl">Phòng Thí Nghiệm Hóa Học</a>
+            <a href="sinh.html" class="block px-4 py-2 text-pink-300 hover:bg-white/5 rounded-xl">Phòng Thí Nghiệm Sinh Học</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12 w-full">
+
+        <!-- Hero Header Section -->
+        <div class="text-center max-w-4xl mx-auto mb-10 space-y-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                <span>KHO ĐỀ THI CHÍNH THỨC & NGUỒN UY TÍN 2023 - 2026</span>
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+                THƯ VIỆN ĐỀ THI <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">KHTN LỚP 9, HSG & CHUYÊN</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+                Tổng hợp đầy đủ đề thi Giữa kì, Cuối kì, Học Sinh Giỏi (HSG) Cấp Tỉnh/TP và Đề Tuyển sinh Lớp 10 Chuyên từ các nguồn uy tín: <strong>Bộ Giáo dục & Đào tạo, THPT Chuyên KHTN, Chuyên Amsterdam, Chuyên Lê Hồng Phong, Chuyên Lam Sơn, Phổ Thông Năng Khiếu</strong>... Kèm ma trận, đáp án và lời giải chi tiết chuẩn GDPT 2018.
+            </p>
+
+            <!-- Quick Metrics Badge Row -->
+            <div class="flex flex-wrap items-center justify-center gap-4 pt-2 font-mono text-xs text-slate-400">
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <span class="text-cyan-400">📚</span>
+                    <span id="badgeTotalExams">Kho Đề Thi Chuẩn Quốc Gia</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <span class="text-emerald-400">🎯</span>
+                    <span>Đầy Đủ Lớp 9, HSG & Chuyên 10</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                    <span class="text-amber-400">⚡</span>
+                    <span>Tải Word & In PDF Miễn Phí (Không Lỗi Phông)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter & Search Toolbar Card -->
+        <section id="filterToolbar" class="glass-card p-5 md:p-6 rounded-3xl border border-white/10 mb-8 space-y-5">
+            <!-- Search Input -->
+            <div class="relative">
+                <i data-lucide="search" class="w-5 h-5 text-slate-400 absolute left-4 top-3.5 pointer-events-none"></i>
+                <input type="text" id="examSearchInput" oninput="filterExams()" placeholder="Tìm theo tên đề, trường chuyên (KHTN, Lê Hồng Phong, Amsterdam, Lam Sơn), năm học, từ khóa..." class="w-full pl-12 pr-10 py-3 rounded-2xl bg-slate-950/80 border border-slate-800 text-white placeholder-slate-500 text-xs sm:text-sm font-mono focus:outline-none focus:border-cyan-400 transition-colors">
+                <button type="button" onclick="resetFilters()" class="absolute right-3.5 top-3 text-slate-500 hover:text-white text-xs font-mono">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Filter Pills Group -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-mono">
+                <!-- Subject Filter -->
+                <div>
+                    <label class="block text-slate-400 mb-1.5 font-bold flex items-center gap-1.5">
+                        <i data-lucide="layers" class="w-3.5 h-3.5 text-cyan-400"></i> Môn Học:
+                    </label>
+                    <select id="filterSubject" onchange="filterExams()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:border-cyan-400">
+                        <option value="all">Tất Cả Môn (Vật Lý, Hóa Học, Sinh Học)</option>
+                        <option value="Vật Lý">⚡ Vật Lý 9 (Điện, Quang, Cơ năng)</option>
+                        <option value="Hóa Học">🧪 Hóa Học 9 (Vô cơ, Hữu cơ, Kim loại)</option>
+                        <option value="Sinh Học">🧬 Sinh Học 9 (Di truyền Mendel, ADN, Tế bào)</option>
+                        <option value="KHTN Tổng Hợp">🔬 KHTN 9 (Đề Tổng Hợp GDPT 2018)</option>
+                    </select>
+                </div>
+
+                <!-- Exam Type Filter -->
+                <div>
+                    <label class="block text-slate-400 mb-1.5 font-bold flex items-center gap-1.5">
+                        <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i> Loại Kỳ Thi:
+                    </label>
+                    <select id="filterCategory" onchange="filterExams()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:border-cyan-400">
+                        <option value="all">Tất Cả Kỳ Thi</option>
+                        <option value="Chuyen">🎯 Đề Tuyển Sinh Lớp 10 Chuyên</option>
+                        <option value="HSG">🏆 Đề Thi Học Sinh Giỏi (HSG) Tỉnh/TP</option>
+                        <option value="TotNghiep">🎓 Đề Thi Tốt Nghiệp / Tuyển Sinh 10</option>
+                        <option value="CuoiKy">📝 Đề Thi Cuối Học Kỳ (HK1 & HK2)</option>
+                        <option value="GiuaKy">⏱️ Đề Thi Giữa Học Kỳ (GK1 & GK2)</option>
+                    </select>
+                </div>
+
+                <!-- Source Filter -->
+                <div>
+                    <label class="block text-slate-400 mb-1.5 font-bold flex items-center gap-1.5">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Nguồn Uy Tín:
+                    </label>
+                    <select id="filterSource" onchange="filterExams()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:border-cyan-400">
+                        <option value="all">Tất Cả Nguồn Uy Tín</option>
+                        <option value="BoGD">🏛️ Bộ GD&ĐT (Đề chuẩn minh họa)</option>
+                        <option value="Chuyen">🏫 Các Trường THPT Chuyên Danh Tiếng</option>
+                        <option value="SoGD">🏢 Sở GD&ĐT Các Tỉnh / Thành Phố</option>
+                        <option value="SGK">📖 Chuẩn 3 Bộ Sách Mới (KNTT, Cánh Diều, CTST)</option>
+                    </select>
+                </div>
+
+                <!-- Year Filter -->
+                <div>
+                    <label class="block text-slate-400 mb-1.5 font-bold flex items-center gap-1.5">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5 text-pink-400"></i> Niên Khóa:
+                    </label>
+                    <select id="filterYear" onchange="filterExams()" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-white text-xs font-mono focus:outline-none focus:border-cyan-400">
+                        <option value="all">Tất Cả Năm (2023 - 2026)</option>
+                        <option value="2025-2026">Niên Khóa 2025 - 2026</option>
+                        <option value="2024-2025">Niên Khóa 2024 - 2025</option>
+                        <option value="2023-2024">Niên Khóa 2023 - 2024</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Exams Count Header -->
+        <div class="flex items-center justify-between mb-6 font-mono text-xs">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                <span class="text-slate-300 font-bold uppercase tracking-wider">Danh Sách Đề Thi Tuyển Chọn:</span>
+                <span id="examResultCount" class="px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Đang tải...</span>
+            </div>
+            <div class="text-slate-400 text-[11px] hidden sm:block">
+                Mỗi bộ đề đi kèm đề bài đầy đủ, hướng dẫn giải chi tiết & file Word tải về chuẩn phông chữ
+            </div>
+        </div>
+
+        <!-- Exam Cards Grid -->
+        <div id="examsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+        <!-- Empty State -->
+        <div id="emptyExamState" class="hidden text-center py-16 glass-card rounded-3xl border border-white/10">
+            <div class="text-4xl mb-3">🔍</div>
+            <h4 class="text-lg font-bold text-white">Không tìm thấy bộ đề phù hợp</h4>
+            <p class="text-xs text-slate-400 mt-1 font-mono">Hãy thử chọn lại môn học, thể loại hoặc bấm nút bên dưới để khôi phục.</p>
+            <button onclick="resetFilters()" class="mt-4 px-5 py-2.5 rounded-xl bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-bold hover:bg-cyan-500/30 transition-all">
+                Xem Toàn Bộ Đề Thi
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Modal Xem Đề Thi & Lời Giải Chi Tiết -->
+    <div id="examDetailModal" class="fixed inset-0 z-[9990] hidden flex items-center justify-center p-3 sm:p-5 bg-slate-950/85 backdrop-blur-2xl transition-opacity">
+        <div class="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl bg-slate-900 border border-cyan-500/40 shadow-[0_0_60px_rgba(0,242,254,0.3)] text-slate-100 overflow-hidden">
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between shrink-0 bg-slate-950/80">
+                <div class="flex items-center gap-2.5">
+                    <span id="modalSubjectBadge" class="px-2.5 py-1 rounded-lg text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Vật Lý 9</span>
+                    <h3 id="modalExamTitle" class="text-sm sm:text-base font-bold text-white truncate max-w-md sm:max-w-xl">Chi Tiết Đề Thi</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="printCurrentExam()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-bold flex items-center gap-1.5 border border-slate-700">
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">In Đề</span>
+                    </button>
+                    <button type="button" onclick="closeExamModal()" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm border border-slate-700 transition-all">
+                        ✕
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div id="modalExamContent" class="p-6 overflow-y-auto space-y-6 flex-1 font-sans text-xs sm:text-sm leading-relaxed">
+                <!-- Content injected dynamically -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-6 py-3.5 border-t border-slate-800 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0 text-xs font-mono">
+                <span class="text-slate-400">Nguồn thẩm định chuẩn: Bộ GD&ĐT & Các Trường Chuyên hàng đầu</span>
+                <div class="flex items-center gap-2">
+                    <button type="button" id="btnModalDownloadWord" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all flex items-center gap-1.5 shadow-sm">
+                        <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Tải File Word (.doc)
+                    </button>
+                    <button type="button" id="btnModalPrintPDF" onclick="printCurrentExam()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 text-slate-950 font-bold hover:brightness-110 active:scale-95 transition-all flex items-center gap-1.5">
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i> In / Xuất PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-white/10 relative z-10 mt-16 text-xs text-slate-400 font-mono py-8">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>© 2026 NEXUSLAB - Thư Viện Đề Thi Khoa Học Tự Nhiên Toàn Quốc.</div>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:text-cyan-400">Trang chủ</a>
+                <span>•</span>
+                <a href="nxscan.html" class="hover:text-emerald-400">Nexus Scanner</a>
+                <span>•</span>
+                <a href="index.html#community-reviews" class="hover:text-amber-400">Đánh giá</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load Nexus Authentication Engine -->
+    <script src="auth.js"></script>
+    <!-- Load NexusLab Motion Primitives & Animata Engine -->
+    <script src="components/animations/nexus-motion.js"></script>
+
+    <!-- EXAM REPOSITORY DATABASE & LOGIC -->
+    <script src="data/exam-repository.js"></script>
+    <script>
+        let activeExams = [];
+        let currentModalExam = null;
+
+        function renderExamsList(exams) {
+            const grid = document.getElementById('examsGrid');
+            const empty = document.getElementById('emptyExamState');
+            const countEl = document.getElementById('examResultCount');
+
+            if (!grid) return;
+            countEl.textContent = `${exams.length} Bộ Đề`;
+
+            if (exams.length === 0) {
+                grid.innerHTML = '';
+                if (empty) empty.classList.remove('hidden');
+                return;
+            }
+            if (empty) empty.classList.add('hidden');
+
+            const subjectThemes = {
+                'Vật Lý': { badge: 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30', border: 'hover:border-cyan-400/50', icon: '⚡' },
+                'Hóa Học': { badge: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30', border: 'hover:border-emerald-400/50', icon: '🧪' },
+                'Sinh Học': { badge: 'bg-pink-500/15 text-pink-300 border-pink-500/30', border: 'hover:border-pink-400/50', icon: '🧬' },
+                'KHTN Tổng Hợp': { badge: 'bg-amber-500/15 text-amber-300 border-amber-500/30', border: 'hover:border-amber-400/50', icon: '🔬' }
+            };
+
+            grid.innerHTML = exams.map(e => {
+                const theme = subjectThemes[e.subject] || subjectThemes['KHTN Tổng Hợp'];
+                return `
+                    <div class="glass-card rounded-3xl p-5 md:p-6 border border-white/10 ${theme.border} flex flex-col justify-between transition-all duration-300 group hover:-translate-y-1 shadow-lg hover:shadow-cyan-500/10">
+                        <div>
+                            <!-- Header tags -->
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <div class="flex items-center gap-1.5 flex-wrap">
+                                    <span class="px-2.5 py-1 rounded-xl text-[10px] font-mono font-bold ${theme.badge}">
+                                        ${theme.icon} ${e.subject} 9
+                                    </span>
+                                    <span class="px-2.5 py-1 rounded-xl text-[10px] font-mono font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                                        ${e.categoryLabel}
+                                    </span>
+                                </div>
+                                <span class="text-[11px] font-mono text-slate-400 shrink-0">
+                                    ${e.year}
+                                </span>
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors mb-2 leading-snug">
+                                ${e.title}
+                            </h3>
+
+                            <!-- School & Verified Source -->
+                            <div class="text-[11px] text-cyan-400/90 font-mono mb-2 flex items-center gap-1.5">
+                                <span>🏛️</span>
+                                <span class="truncate">${e.school}</span>
+                            </div>
+
+                            <div class="text-[10px] text-emerald-400 font-mono mb-3 flex items-center gap-1">
+                                <span>✓ Nguồn uy tín:</span>
+                                <span class="truncate text-slate-300">${e.sourceName || 'Sở GD&ĐT & Trường Chuyên'}</span>
+                            </div>
+
+                            <!-- Highlights preview -->
+                            <p class="text-xs text-slate-300 font-sans leading-relaxed mb-4 line-clamp-3 bg-slate-950/50 p-3 rounded-2xl border border-slate-800/80">
+                                "${e.preview}"
+                            </p>
+
+                            <!-- Key topics chips -->
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                ${e.topics.slice(0, 3).map(t => `
+                                    <span class="px-2 py-0.5 rounded-lg text-[10px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
+                                        # ${t}
+                                    </span>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-4 border-t border-slate-800/80 grid grid-cols-2 gap-2 font-mono text-xs">
+                            <button type="button" onclick="openExamModal('${e.id}')" class="w-full py-2.5 px-3 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 font-bold border border-cyan-500/30 transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>Xem Lời Giải</span>
+                            </button>
+                            <button type="button" onclick="downloadExamWord('${e.id}')" class="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:brightness-110 text-slate-950 font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95 shadow-sm">
+                                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                                <span>Tải Word (.doc)</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        function filterExams() {
+            const query = (document.getElementById('examSearchInput').value || '').toLowerCase().trim();
+            const subject = document.getElementById('filterSubject').value;
+            const category = document.getElementById('filterCategory').value;
+            const year = document.getElementById('filterYear').value;
+            const source = document.getElementById('filterSource').value;
+
+            activeExams = (window.EXAM_DATABASE || []).filter(e => {
+                const matchSubject = subject === 'all' || e.subject === subject;
+                const matchCat = category === 'all' || e.category === category;
+                const matchYear = year === 'all' || e.year === year;
+                
+                let matchSource = true;
+                if (source === 'BoGD') {
+                    matchSource = (e.sourceGroup === 'BoGD' || e.school.includes('Bộ Giáo dục'));
+                } else if (source === 'Chuyen') {
+                    matchSource = (e.category === 'Chuyen' || e.school.includes('Chuyên'));
+                } else if (source === 'SoGD') {
+                    matchSource = (e.school.includes('Sở GD') || e.category === 'HSG' || e.category === 'TotNghiep');
+                } else if (source === 'SGK') {
+                    matchSource = (e.topics.some(t => t.includes('KNTT') || t.includes('Cánh Diều') || t.includes('GDPT')));
+                }
+
+                const matchQuery = !query || 
+                    e.title.toLowerCase().includes(query) ||
+                    e.school.toLowerCase().includes(query) ||
+                    e.subject.toLowerCase().includes(query) ||
+                    (e.sourceName && e.sourceName.toLowerCase().includes(query)) ||
+                    e.topics.some(t => t.toLowerCase().includes(query));
+
+                return matchSubject && matchCat && matchYear && matchSource && matchQuery;
+            });
+
+            renderExamsList(activeExams);
+        }
+
+        function resetFilters() {
+            document.getElementById('examSearchInput').value = '';
+            document.getElementById('filterSubject').value = 'all';
+            document.getElementById('filterCategory').value = 'all';
+            document.getElementById('filterYear').value = 'all';
+            document.getElementById('filterSource').value = 'all';
+            activeExams = [...(window.EXAM_DATABASE || [])];
+            renderExamsList(activeExams);
+        }
+
+        // Open Exam Modal with KaTeX auto-rendered scientific equations
+        function openExamModal(examId) {
+            const exam = (window.EXAM_DATABASE || []).find(e => e.id === examId);
+            if (!exam) return;
+            currentModalExam = exam;
+
+            const modal = document.getElementById('examDetailModal');
+            const titleEl = document.getElementById('modalExamTitle');
+            const badgeEl = document.getElementById('modalSubjectBadge');
+            const contentEl = document.getElementById('modalExamContent');
+            const btnWord = document.getElementById('btnModalDownloadWord');
+
+            titleEl.textContent = exam.title;
+            badgeEl.textContent = `${exam.subject} 9 • ${exam.year}`;
+            btnWord.onclick = () => downloadExamWord(exam.id);
+
+            contentEl.innerHTML = `
+                <!-- Exam Top Information Header -->
+                <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 font-mono text-xs space-y-2">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div><span class="text-slate-400">Đơn vị ra đề:</span> <span class="text-white font-bold">${exam.school}</span></div>
+                        <div><span class="text-slate-400">Kỳ thi:</span> <span class="text-cyan-300 font-bold">${exam.categoryLabel}</span></div>
+                        <div><span class="text-slate-400">Thời gian làm bài:</span> <span class="text-white">${exam.duration}</span></div>
+                        <div><span class="text-slate-400">Hình thức:</span> <span class="text-white">${exam.format}</span></div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-800 text-[11px] text-emerald-400 flex items-center justify-between flex-wrap gap-2">
+                        <span>✓ Nguồn uy tín thẩm định: <strong>${exam.sourceName || 'Bộ GD&ĐT / Trường Chuyên'}</strong></span>
+                        <span class="text-cyan-400">Niên khóa: ${exam.year}</span>
+                    </div>
+                </div>
+
+                <!-- Highlight solution banner -->
+                <div class="p-4 rounded-2xl bg-cyan-950/40 border border-cyan-500/30">
+                    <h4 class="font-bold text-cyan-300 mb-1 flex items-center gap-1.5 text-xs font-mono">
+                        <span>💡</span> Hướng Dẫn Tư Duy & Chiến Thuật Làm Bài:
+                    </h4>
+                    <p class="text-xs text-slate-200 leading-relaxed font-sans">
+                        ${exam.solutionHighlight}
+                    </p>
+                </div>
+
+                <!-- Questions & Step-by-Step Solutions -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase font-mono tracking-wider flex items-center gap-2">
+                        <span>📝</span> Đề Bài & Lời Giải Chi Tiết Từng Câu:
+                    </h4>
+                    ${exam.questions.map((q, idx) => `
+                        <div class="p-4 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-2.5">
+                            <div class="font-bold text-white text-xs sm:text-sm text-cyan-300 leading-snug">
+                                ${q.q}
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 font-mono text-xs text-emerald-300 leading-relaxed">
+                                <span class="text-slate-400 font-bold block mb-1">Lời giải chi tiết & Đáp số:</span>
+                                <div class="solution-text font-sans sm:font-mono text-slate-100 dark:text-emerald-300">
+                                    ${q.a}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            modal.classList.remove('hidden');
+            if (window.NexusAuth && window.NexusAuth.playClick) NexusAuth.playClick();
+            lucide.createIcons();
+
+            // Render KaTeX formulas inside the modal cleanly
+            if (typeof renderMathInElement === 'function') {
+                try {
+                    renderMathInElement(contentEl, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ],
+                        ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+                        throwOnError: false
+                    });
+                } catch (e) {
+                    console.warn('KaTeX render warning in modal:', e);
+                }
+            }
+        }
+
+        function closeExamModal() {
+            const modal = document.getElementById('examDetailModal');
+            if (modal) modal.classList.add('hidden');
+            if (window.NexusAuth && window.NexusAuth.playClick) NexusAuth.playClick();
+        }
+
+        // Print Current Exam View
+        function printCurrentExam() {
+            window.print();
+        }
+
+        // Export Genuine Microsoft Word File (.doc) with UTF-8 BOM & Zero Font Corruption
+        function downloadExamWord(examId) {
+            const exam = (window.EXAM_DATABASE || []).find(e => e.id === examId);
+            if (!exam) return;
+
+            const htmlDoc = `
+<!DOCTYPE html>
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>${exam.title}</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', 'Arial', sans-serif;
+            font-size: 13pt;
+            line-height: 1.35;
+            color: #000000;
+            margin: 2cm;
+        }
+        .header-table {
+            width: 100%;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+        .header-left {
+            text-align: center;
+            font-size: 11pt;
+            font-weight: bold;
+            width: 50%;
+        }
+        .header-right {
+            text-align: center;
+            font-size: 11pt;
+            font-weight: bold;
+            width: 50%;
+        }
+        h1 {
+            text-align: center;
+            font-size: 15pt;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        .meta-info {
+            text-align: center;
+            font-style: italic;
+            font-size: 11pt;
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 13pt;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background-color: #f2f2f2;
+            padding: 4px 8px;
+            border-left: 4px solid #0284c7;
+        }
+        .question-box {
+            margin-bottom: 16px;
+            padding-left: 8px;
+        }
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .solution-box {
+            background-color: #fbfbfb;
+            border: 1px dashed #999999;
+            padding: 8px 12px;
+            margin-top: 6px;
+            font-size: 12pt;
+        }
+        .footer-note {
+            margin-top: 30px;
+            border-top: 1px solid #cccccc;
+            padding-top: 8px;
+            font-size: 10pt;
+            font-style: italic;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table class="header-table">
+        <tr>
+            <td class="header-left">
+                BỘ GIÁO DỤC VÀ ĐÀO TẠO<br>
+                <strong>HỆ THỐNG KHTN NEXUSLAB</strong><br>
+                <em>Kho Tài Liệu Khảo Sát 2023 - 2026</em>
+            </td>
+            <td class="header-right">
+                <strong>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</strong><br>
+                Độc lập - Tự do - Hạnh phúc<br>
+                -------------------
+            </td>
+        </tr>
+    </table>
+
+    <h1>${exam.title}</h1>
+    <div class="meta-info">
+        Đơn vị ra đề: <strong>${exam.school}</strong> | Môn: <strong>${exam.subject} 9</strong><br>
+        Niên khóa: ${exam.year} | Thời gian làm bài: ${exam.duration} | Hình thức: ${exam.format}<br>
+        Nguồn uy tín thẩm định: <strong>${exam.sourceName || 'Bộ GD&ĐT / Trường Chuyên'}</strong>
+    </div>
+
+    <div class="section-title">I. HƯỚNG DẪN TƯ DUY & PHƯƠNG PHÁP LÀM BÀI</div>
+    <p style="padding-left: 8px;">${exam.solutionHighlight}</p>
+
+    <div class="section-title">II. NỘI DUNG ĐỀ THI & HƯỚNG DẪN GIẢI CHI TIẾT</div>
+    ${exam.questions.map((q, idx) => `
+        <div class="question-box">
+            <div class="question-title">${q.q}</div>
+            <div class="solution-box">
+                <strong>Hướng dẫn giải chi tiết:</strong><br>
+                ${q.a.replace(/\$/g, '')}
+            </div>
+        </div>
+    `).join('')}
+
+    <div class="footer-note">
+        Đề thi được phát hành và số hóa bởi Hệ thống NexusLab. Nguồn dữ liệu từ cổng thông tin giáo dục chính thức.
+    </div>
+</body>
+</html>
+            `;
+
+            // Prefixed with UTF-8 Byte Order Mark (\ufeff) to eliminate all font corruptions in Word
+            const blob = new Blob(['\ufeff' + htmlDoc], { type: 'application/msword;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const safeName = exam.title.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '_');
+            a.download = `${safeName}_NexusLab.doc`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            if (window.NexusAuth && window.NexusAuth.showToast) {
+                NexusAuth.showToast(`Đã xuất file Word "${exam.title}" thành công!`, 'success');
+            }
+        }
+
+        // Close on backdrop click
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('examDetailModal');
+            if (e.target === modal) closeExamModal();
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            activeExams = [...(window.EXAM_DATABASE || [])];
+            renderExamsList(activeExams);
+
+            // Auto-render math on initial load if KaTeX is ready
+            if (typeof renderMathInElement === 'function') {
+                try {
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false },
+                            { left: "\\(", right: "\\)", display: false },
+                            { left: "\\[", right: "\\]", display: true }
+                        ],
+                        ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+                        throwOnError: false
+                    });
+                } catch (e) {}
+            }
+        });
+    </script>
+</body>
+</html>
