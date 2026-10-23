@@ -1,0 +1,159 @@
+{
+  "users": [
+    {
+      "id": "admin_nexus_01",
+      "username": "adminnexus",
+      "email": "adminnexus@nexus.edu.vn",
+      "password": "nx_hash_d106b10d982bc",
+      "name": "Quản Trị Viên NexusLab",
+      "role": "admin",
+      "roleLabel": "Quản trị viên Hệ thống",
+      "isAdmin": true,
+      "canDeleteComments": true,
+      "canDownloadPremium": true,
+      "grade": "Ban Quản Trị Trung Tâm",
+      "school": "NEXUSLAB Science Hub",
+      "avatar": "🛡️",
+      "xp": 99999,
+      "level": "System Administrator",
+      "badges": [
+        "Quản trị tối cao",
+        "Bảo mật NexusLab",
+        "Master 60 FPS"
+      ],
+      "completedLabs": [
+        "ly1", "ly2", "ly3", "ly4", "ly5", "ly6", "ly7", "ly8",
+        "hoa1", "hoa2", "hoa3", "hoa4", "hoa5", "hoa6", "hoa7", "hoa8", "hoa9",
+        "sinh1", "sinh2", "sinh3", "sinh4", "sinh5", "sinh6", "sinh7", "sinh8", "sinh9", "sinh10", "sinh11", "sinh12"
+      ]
+    },
+    {
+      "id": "admin_nexus_02",
+      "username": "nexusadmin",
+      "email": "nexusadmin@nexus.edu.vn",
+      "password": "nx_hash_d106b10d982bc",
+      "name": "Admin NexusLab Studio",
+      "role": "admin",
+      "roleLabel": "Quản trị viên Cấp cao",
+      "isAdmin": true,
+      "canDeleteComments": true,
+      "canDownloadPremium": true,
+      "grade": "Ban Quản Trị Studio",
+      "school": "NEXUSLAB Science Hub",
+      "avatar": "⚡",
+      "xp": 99999,
+      "level": "Studio Administrator",
+      "badges": [
+        "Quản trị viên",
+        "Scanner VIP Master"
+      ],
+      "completedLabs": [
+        "ly1", "ly2", "ly3", "ly4", "ly5", "ly6", "ly7", "ly8",
+        "hoa1", "hoa2", "hoa3", "hoa4", "hoa5", "hoa6", "hoa7", "hoa8", "hoa9",
+        "sinh1", "sinh2", "sinh3", "sinh4", "sinh5", "sinh6", "sinh7", "sinh8", "sinh9", "sinh10", "sinh11", "sinh12"
+      ]
+    },
+    {
+      "id": "user_nexus_pre",
+      "username": "nexuspre",
+      "email": "nexuspre@nexus.edu.vn",
+      "password": "nx_hash_1f4e22a2970825",
+      "name": "Nexus Premium Member",
+      "role": "premium",
+      "roleLabel": "Thành viên Premium VIP",
+      "isAdmin": false,
+      "canDeleteComments": false,
+      "canDownloadPremium": true,
+      "grade": "Khối Nghiên Cứu VIP",
+      "school": "NEXUSLAB VIP Academy",
+      "avatar": "👑",
+      "xp": 50000,
+      "level": "Premium VIP Scientist",
+      "badges": [
+        "Thành viên Premium",
+        "Scanner Bản Quyền"
+      ],
+      "completedLabs": [
+        "ly1", "ly2", "ly3", "ly4", "ly5", "ly6", "ly7", "ly8",
+        "hoa1", "hoa2", "hoa3", "hoa4", "hoa5", "hoa6", "hoa7", "hoa8", "hoa9",
+        "sinh1", "sinh2", "sinh3", "sinh4", "sinh5", "sinh6", "sinh7", "sinh8", "sinh9", "sinh10", "sinh11", "sinh12"
+      ]
+    },
+    {
+      "id": "user_nexus_ult",
+      "username": "nexusult",
+      "email": "nexusult@nexus.edu.vn",
+      "password": "nx_hash_1f4e22a2970825",
+      "name": "Nexus Ultimate Member",
+      "role": "ultimate",
+      "roleLabel": "Thành viên Ultimate VIP",
+      "isAdmin": false,
+      "canDeleteComments": false,
+      "canDownloadPremium": true,
+      "grade": "Khối Đặc Quyền Ultimate",
+      "school": "NEXUSLAB VIP Academy",
+      "avatar": "💎",
+      "xp": 80000,
+      "level": "Ultimate VIP Scientist",
+      "badges": [
+        "Thành viên Ultimate",
+        "Scanner Không Giới Hạn"
+      ],
+      "completedLabs": [
+        "ly1", "ly2", "ly3", "ly4", "ly5", "ly6", "ly7", "ly8",
+        "hoa1", "hoa2", "hoa3", "hoa4", "hoa5", "hoa6", "hoa7", "hoa8", "hoa9",
+        "sinh1", "sinh2", "sinh3", "sinh4", "sinh5", "sinh6", "sinh7", "sinh8", "sinh9", "sinh10", "sinh11", "sinh12"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev_1729000000001",
+      "userId": "user_gv_01",
+      "userName": "ThS. Hoàng Tuấn Anh",
+      "userRole": "Giáo viên",
+      "userAvatar": "👨‍🏫",
+      "userIdentifier": "tuananh@nexus.edu.vn",
+      "rating": 5,
+      "content": "Phòng thí nghiệm ảo 60 FPS rất mượt mà! Học sinh lớp 9 của tôi tiếp thu bài phân li Menđen và định luật Ôm nhanh gấp đôi khi được trực tiếp quan sát và tương tác trên máy tính.",
+      "tags": [
+        "Mô phỏng chân thực",
+        "Hỗ trợ giảng dạy"
+      ],
+      "createdAt": "2026-10-18T08:30:00.000Z",
+      "likes": 24
+    },
+    {
+      "id": "rev_1729000000002",
+      "userId": "user_hs_01",
+      "userName": "Nguyễn Hải Đăng",
+      "userRole": "Học sinh",
+      "userAvatar": "👨‍🎓",
+      "userIdentifier": "haidang@nexus.edu.vn",
+      "rating": 5,
+      "content": "Giao diện siêu đẹp, animation mượt và không bị lag giật. Mình thích nhất phần mô phỏng Kính hiển vi sống và cấu trúc ADN xoắn kép, trực quan hơn nhiều so với hình vẽ tĩnh trong SGK!",
+      "tags": [
+        "Giao diện đỉnh cao",
+        "Dễ hiểu"
+      ],
+      "createdAt": "2026-10-19T14:15:00.000Z",
+      "likes": 18
+    },
+    {
+      "id": "rev_1729000000003",
+      "userId": "user_hs_02",
+      "userName": "Trần Thị Mai Anh",
+      "userRole": "Học sinh",
+      "userAvatar": "👩‍🔬",
+      "userIdentifier": "maianh@nexus.edu.vn",
+      "rating": 5,
+      "content": "Nhờ có NexusLab mà mình đạt điểm 10 thực hành Hóa Học! Phản ứng tráng gương glucose và màu hồ tinh bột mô phỏng đổi màu theo nhiệt độ cực kỳ chân thực.",
+      "tags": [
+        "Mô phỏng chân thực",
+        "Đạt điểm cao"
+      ],
+      "createdAt": "2026-10-20T09:45:00.000Z",
+      "likes": 15
+    }
+  ]
+}

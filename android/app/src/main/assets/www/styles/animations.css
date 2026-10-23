@@ -1,0 +1,486 @@
+/**
+ * NEXUSLAB - SCIENTIFIC VIRTUAL SIMULATION SUITE
+ * High-Performance Animation System (styles/animations.css)
+ * Integrating Motion Primitives (ibelick) & Animata (codse)
+ * Clean, Hardware-Accelerated, Accessible, Dark & Light Mode Compatible.
+ */
+
+:root {
+  --mp-spotlight-color: rgba(2, 132, 199, 0.12);
+  --mp-spotlight-size: 320px;
+  --mp-border-trail-color: #0284c7;
+  --mp-border-trail-size: 90px;
+  --mp-border-trail-duration: 5s;
+  --animata-shiny-duration: 3s;
+  --animata-glow-color: rgba(2, 132, 199, 0.35);
+}
+
+html.dark {
+  --mp-spotlight-color: rgba(0, 242, 254, 0.14);
+  --mp-border-trail-color: #00f2fe;
+  --animata-glow-color: rgba(0, 242, 254, 0.45);
+}
+
+/* ==========================================================================
+   1. MOTION PRIMITIVES — BORDER TRAIL (Animated Perimeter Beam)
+   ========================================================================== */
+.mp-border-trail-wrapper {
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mp-border-trail {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  pointer-events: none;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Modern CSS Motion Path implementation */
+@supports (offset-path: rect(0 auto auto 0)) {
+  .mp-border-trail-beam {
+    position: absolute;
+    width: var(--mp-border-trail-size, 80px);
+    height: var(--mp-border-trail-size, 80px);
+    offset-path: rect(0 auto auto 0 round inherit);
+    animation: mpBorderTrailRotate var(--mp-border-trail-duration, 5s) linear infinite;
+    pointer-events: none;
+  }
+}
+
+@keyframes mpBorderTrailRotate {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* Cross-browser Conic Gradient Travelling Border (fallback & ultra-smooth mode) */
+.mp-conic-trail {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.mp-conic-trail::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 70deg,
+    var(--mp-border-trail-color, #0284c7) 90deg,
+    transparent 110deg,
+    transparent 360deg
+  );
+  animation: mpConicSpin var(--mp-border-trail-duration, 5s) linear infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.mp-conic-trail-content {
+  position: relative;
+  z-index: 1;
+  border-radius: inherit;
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes mpConicSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Theme variations for Border Trails */
+.mp-trail-cyan {
+  --mp-border-trail-color: #00f2fe;
+}
+.mp-trail-emerald {
+  --mp-border-trail-color: #00ff9d;
+}
+.mp-trail-pink {
+  --mp-border-trail-color: #ff2a85;
+}
+.mp-trail-purple {
+  --mp-border-trail-color: #8b5cf6;
+}
+
+/* ==========================================================================
+   2. MOTION PRIMITIVES — SPOTLIGHT (Cursor-Tracking Radial Light)
+   ========================================================================== */
+.mp-spotlight-card {
+  position: relative;
+  overflow: hidden;
+  --mouse-x: -1000px;
+  --mouse-y: -1000px;
+  --spotlight-opacity: 0;
+}
+
+.mp-spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    var(--mp-spotlight-size, 320px) circle at var(--mouse-x) var(--mouse-y),
+    var(--mp-spotlight-color, rgba(2, 132, 199, 0.15)),
+    transparent 75%
+  );
+  opacity: var(--spotlight-opacity);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Light mode crisp contrast adjustment */
+html.light .mp-spotlight-card::before,
+html:not(.dark) .mp-spotlight-card::before {
+  background: radial-gradient(
+    var(--mp-spotlight-size, 320px) circle at var(--mouse-x) var(--mouse-y),
+    rgba(2, 132, 199, 0.08),
+    transparent 70%
+  );
+}
+
+/* ==========================================================================
+   3. MOTION PRIMITIVES — 3D TILT WITH GLARE
+   ========================================================================== */
+.mp-tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+}
+
+.mp-glare-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 60%
+  );
+  opacity: var(--glare-opacity, 0);
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+
+/* ==========================================================================
+   4. MOTION PRIMITIVES — TEXT EFFECT & REVEAL TYPOGRAPHY
+   ========================================================================== */
+.mp-text-reveal {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.mp-text-word {
+  display: inline-block;
+  white-space: pre;
+  opacity: 0;
+  transform: translateY(18px) scale(0.96);
+  filter: blur(8px);
+  animation: mpTextIn 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes mpTextIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Shimmering Text Gradient (Animata / Motion Primitives hybrid) */
+.animata-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    currentColor 0%,
+    #38bdf8 25%,
+    #818cf8 50%,
+    #38bdf8 75%,
+    currentColor 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: animataShimmerText 6s linear infinite;
+}
+
+@keyframes animataShimmerText {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ==========================================================================
+   5. ANIMATA — SHINY BUTTON & TACTILE RIPPLE
+   ========================================================================== */
+.animata-shiny-button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.animata-shiny-button:active {
+  transform: scale(0.97);
+}
+
+.animata-shiny-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    transparent 100%
+  );
+  transform: skewX(-22deg);
+  pointer-events: none;
+  animation: animataShinySweep var(--animata-shiny-duration, 3.5s) ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes animataShinySweep {
+  0% {
+    left: -120%;
+  }
+  30%, 100% {
+    left: 200%;
+  }
+}
+
+/* Ripple Click Wave Effect */
+.animata-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(0);
+  animation: animataRippleWave 0.55s ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes animataRippleWave {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Magnetic Button physics */
+.animata-magnetic {
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ==========================================================================
+   6. ANIMATA — GLOWING CARDS & BENTO GRID HOVER ELEVATION
+   ========================================================================== */
+.animata-glow-card {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.animata-glow-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -10px var(--animata-glow-color);
+}
+
+html.light .animata-glow-card:hover,
+html:not(.dark) .animata-glow-card:hover {
+  box-shadow: 0 14px 30px -8px rgba(2, 132, 199, 0.18), 0 0 0 1px rgba(2, 132, 199, 0.3);
+}
+
+/* Card inner lighting border highlight */
+.animata-inner-border {
+  position: relative;
+}
+
+.animata-inner-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.1)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   7. MOTION PRIMITIVES — IN-VIEW & STAGGERED SCROLL REVEAL
+   ========================================================================== */
+.mp-scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.mp-scroll-reveal.mp-is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Stagger delay classes */
+.mp-stagger-1 { transition-delay: 0.05s; }
+.mp-stagger-2 { transition-delay: 0.10s; }
+.mp-stagger-3 { transition-delay: 0.15s; }
+.mp-stagger-4 { transition-delay: 0.20s; }
+.mp-stagger-5 { transition-delay: 0.25s; }
+.mp-stagger-6 { transition-delay: 0.30s; }
+.mp-stagger-7 { transition-delay: 0.35s; }
+.mp-stagger-8 { transition-delay: 0.40s; }
+
+/* ==========================================================================
+   8. MOTION PRIMITIVES — SLIDING ACTIVE TABS / SEGMENTED CONTROL
+   ========================================================================== */
+.mp-tabs-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.25rem;
+}
+
+.mp-tabs-slider {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  border-radius: 0.75rem;
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(2, 132, 199, 0.35);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.15);
+  transition: all 0.32s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.dark .mp-tabs-slider {
+  background: rgba(0, 242, 254, 0.18);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+}
+
+.mp-tab-item {
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s ease;
+}
+
+/* ==========================================================================
+   9. ANIMATA — NUMBER TICKER / COUNTER SMOOTH TRANSITIONS
+   ========================================================================== */
+.animata-counter {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  will-change: contents;
+}
+
+/* ==========================================================================
+   10. AMBIENT AURORA & GLOW ORBS
+   ========================================================================== */
+@keyframes animataAuroraFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.18;
+  }
+  33% {
+    transform: translate(30px, -25px) scale(1.08);
+    opacity: 0.28;
+  }
+  66% {
+    transform: translate(-25px, 20px) scale(0.95);
+    opacity: 0.22;
+  }
+}
+
+.animata-aurora-orb {
+  animation: animataAuroraFloat 12s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animata-aurora-orb-alt {
+  animation: animataAuroraFloat 10s ease-in-out infinite reverse;
+  animation-delay: 2s;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   11. ACCESSIBILITY — PREFERS-REDUCED-MOTION OVERRIDES
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .mp-scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .mp-text-word {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .animata-shiny-button::after,
+  .mp-conic-trail::before,
+  .animata-aurora-orb,
+  .animata-aurora-orb-alt {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .mp-tilt-card {
+    transform: none !important;
+  }
+}

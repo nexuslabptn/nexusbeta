@@ -1,0 +1,27 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/thu-vien-de.html"
+  to = "/thuviede.html"
+  status = 301
+
+[[redirects]]
+  from = "/nexus-scanner.html"
+  to = "/nxscan.html"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type, X-Admin-User, X-Admin-Pass"
+    Access-Control-Allow-Methods = "GET, POST, DELETE, OPTIONS"
